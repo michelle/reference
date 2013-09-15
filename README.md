@@ -61,4 +61,4 @@ will correspond to the nesting of the current property (e.g.
 ```
 
 The above should give you something like this:
-<img src"http://cl.ly/image/021u0r0j2c2x">
+<img src="http://cl.ly/image/021u0r0j2c2x">
