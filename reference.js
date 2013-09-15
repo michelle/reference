@@ -24,7 +24,7 @@ function process(arr, path) {
 }
 
 function processObj(obj, path) {
-  if (!obj.name) {
+  if (obj.name === undefined) {
     throw new Error('Your objects must each have a `name` property: e.g. {"name":"MyObject", ...}');
   }
   var html = '';
@@ -34,7 +34,9 @@ function processObj(obj, path) {
   } else {
     html += '<div class="child" id="';
   }
-  html += path + obj.name + '">';
+
+  var sanitizedName = sanitize(obj.name.toString());
+  html += path + sanitizedName + '">';
   var name = obj.name;
 
   if (obj.optional) {
@@ -58,11 +60,17 @@ function processObj(obj, path) {
   }
 
   if (obj.children) {
-    html += '<div class="children">' + process(obj.children, obj.name + '-') + '</div>';
+    html += '<div class="children">' + process(obj.children, sanitizedName + '-') + '</div>';
   }
 
   html += '</div>';
   return html;
+}
+
+function sanitize(str) {
+  str = str.replace(/\s+/g, '_');
+  str = str.replace(/[^\w\-]/g, '');
+  return str.toLowerCase();
 }
 
 module.exports = reference;

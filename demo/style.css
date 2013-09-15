@@ -30,6 +30,10 @@ body, html {
   padding: 8px 0 8px 15px;
 }
 
+.toplevel .children > .child {
+  padding-right: 15px;
+}
+
 .children {
   border-left: 1px dashed #ccc;
 }
@@ -81,4 +85,11 @@ body, html {
 
 .api .code {
   font-family: Courier;
+}
+
+.tip {
+  background-color: #333;
+  font-size: 12px;
+  padding: 10px;
+  color: #fff;
 }
