@@ -36,7 +36,8 @@ function processObj(obj, path) {
   }
 
   var sanitizedName = sanitize(obj.name.toString());
-  html += path + sanitizedName + '">';
+  path += sanitizedName;
+  html += path + '">';
   var name = obj.name;
 
   if (obj.optional) {
@@ -60,7 +61,7 @@ function processObj(obj, path) {
   }
 
   if (obj.children) {
-    html += '<div class="children">' + process(obj.children, sanitizedName + '-') + '</div>';
+    html += '<div class="children">' + process(obj.children, path + '-') + '</div>';
   }
 
   html += '</div>';
