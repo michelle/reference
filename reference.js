@@ -28,11 +28,20 @@ function processObj(obj, path) {
     throw new Error('Your objects must each have a `name` property: e.g. {"name":"MyObject", ...}');
   }
   var html = '';
+
+  var tags = '';
+  if (obj.tags && obj.tags.constructor === Array) {
+    for (var i = 0, ii = obj.tags.length; i < ii; i += 1) {
+      var tag = sanitize(obj.tags[i].toString());
+      tags += tag + ' ';
+    }
+  }
+
   if (!path) {
     // This is a top-level deal.
-    html += '<div class="toplevel" id="';
+    html += '<div class="toplevel ' + tags + '" id="';
   } else {
-    html += '<div class="child" id="';
+    html += '<div class="child ' + tags + '" id="';
   }
 
   var sanitizedName = sanitize(obj.name.toString());
@@ -47,7 +56,14 @@ function processObj(obj, path) {
   html += '<span class="name">' + name;
 
   if (obj.type) {
-    html += '<span class="type ' + obj.type + '">' + obj.type + '</span>';
+    html += '<span class="tag type ' + obj.type + '">' + obj.type + '</span>';
+  }
+
+  if (obj.tags && obj.tags.constructor === Array) {
+    for (var i = 0, ii = obj.tags.length; i < ii; i += 1) {
+      var tag = sanitize(obj.tags[i].toString());
+      html += '<span class="tag ' + tag + '">' + tag + '</span>';
+    }
   }
 
   if (obj.snippet) {
