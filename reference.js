@@ -1,5 +1,10 @@
+// TODO: eventually allow configurable yaml/json, html/md.
 function reference(file) {
-  var components = JSON.parse(file);
+  try {
+    var components = JSON.parse(file);
+  } catch (e) {
+    throw new Error('Please pass in a JSON file buffer/string.');
+  }
 
   return process(components, '');
 }
@@ -18,7 +23,6 @@ function process(arr, path) {
   return html;
 }
 
-// TODO: sanitize objects. Right now we're assuming well-formed.
 function processObj(obj, path) {
   if (!obj.name) {
     throw new Error('Your objects must each have a `name` property: e.g. {"name":"MyObject", ...}');
