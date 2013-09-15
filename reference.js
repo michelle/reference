@@ -6,14 +6,23 @@ function reference(file) {
 
 function process(arr, path) {
   var html = '';
-  for (var i = 0, ii = arr.length; i < ii; i += 1) {
-    html += processObj(arr[i], path);
+
+  if (arr.constructor === Array) {
+    for (var i = 0, ii = arr.length; i < ii; i += 1) {
+      html += processObj(arr[i], path);
+    }
+  } else {
+    html += processObj(arr, path);
   }
+
   return html;
 }
 
 // TODO: sanitize objects. Right now we're assuming well-formed.
 function processObj(obj, path) {
+  if (!obj.name) {
+    throw new Error('Your objects must each have a `name` property: e.g. {"name":"MyObject", ...}');
+  }
   var html = '';
   if (!path) {
     // This is a top-level deal.
