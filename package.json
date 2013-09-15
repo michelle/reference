@@ -1,0 +1,12 @@
+{
+  "name": "reference",
+  "version": "0.0.0",
+  "description": "Generate documentation from JSON.",
+  "main": "reference.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Michelle Bu",
+  "license": "BSD"
+}
