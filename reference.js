@@ -1,29 +1,31 @@
 // TODO: eventually allow configurable yaml/json, html/md.
-function reference(file) {
+function reference(file, options) {
+  options = options || {};
+
   try {
     var components = JSON.parse(file);
   } catch (e) {
     throw new Error('Please pass in a JSON file buffer/string.');
   }
 
-  return process(components, '');
+  return process(components, '', options.anchor);
 }
 
-function process(arr, path) {
+function process(arr, path, anchor) {
   var html = '';
 
   if (arr.constructor === Array) {
     for (var i = 0, ii = arr.length; i < ii; i += 1) {
-      html += processObj(arr[i], path);
+      html += processObj(arr[i], path, anchor);
     }
   } else {
-    html += processObj(arr, path);
+    html += processObj(arr, path, anchor);
   }
 
   return html;
 }
 
-function processObj(obj, path) {
+function processObj(obj, path, anchor) {
   if (obj.name === undefined) {
     throw new Error('Your objects must each have a `name` property: e.g. {"name":"MyObject", ...}');
   }
@@ -53,6 +55,11 @@ function processObj(obj, path) {
     name = '<span class="optional"><span class="bracket">[</span>' + name;
     name += '<span class="bracket">]</span></span>';
   }
+
+  // Add anchor to name.
+  if (anchor) {
+    name = '<a href="#' + path + '">' + name + '</a>';
+  }
   html += '<span class="name">' + name;
 
   if (obj.type) {
@@ -77,7 +84,7 @@ function processObj(obj, path) {
   }
 
   if (obj.children) {
-    html += '<div class="children">' + process(obj.children, path + '-') + '</div>';
+    html += '<div class="children">' + process(obj.children, path + '-', anchor) + '</div>';
   }
 
   html += '</div>';
