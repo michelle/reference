@@ -68,8 +68,8 @@ function processObj(obj, path, anchor) {
 
   if (obj.tags && obj.tags.constructor === Array) {
     for (var i = 0, ii = obj.tags.length; i < ii; i += 1) {
-      var tag = sanitize(obj.tags[i].toString());
-      html += '<span class="tag ' + tag + '">' + tag + '</span>';
+      var tagClass = sanitize(obj.tags[i].toString());
+      html += '<span class="tag ' + tagClass + '">' + obj.tags[i] + '</span>';
     }
   }
 
