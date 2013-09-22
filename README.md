@@ -1,7 +1,7 @@
 # reference.js
 
 Generate a simple API reference from JSON. Made specifically for
-<a href="http://peerjs.com">PeerJS</a>, so it probably won't suit your needs.
+<a href="http://peerjs.com/docs">PeerJS</a>, so it probably won't suit your needs.
 
 ## Expected style
 
@@ -15,6 +15,7 @@ will correspond to the nesting of the current property (e.g.
   {
     "name": "TopLevelClass",
     "type": "constructor",
+    "tags": ["my", "tags"], // newly-added; doesn't show up in the pic below.
     "description": "This class does some stuff.",
     "snippet": "var klass = new TopLevelClass(arg1, [callback]);",
     "children": [
