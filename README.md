@@ -3,6 +3,8 @@
 Generate a simple API reference from JSON. Made specifically for
 <a href="http://peerjs.com/docs">PeerJS</a>, so it probably won't suit your needs.
 
+    npm install reference
+
 ## Expected style
 
 The `name` property is **required**. Everything else is optional. Anchor IDs
