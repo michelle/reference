@@ -1,11 +1,20 @@
+var yaml = require('yaml');
+
 // TODO: eventually allow configurable yaml/json, html/md.
 function reference(file, options) {
   options = options || {};
 
+  var components;
   try {
-    var components = JSON.parse(file);
+    components = JSON.parse(file);
   } catch (e) {
-    throw new Error('Please pass in a JSON file buffer/string.');
+    try {
+      components = yaml.eval(file);
+    } catch (e) {
+    }
+  }
+  if (!components || typeof components !== 'object') {
+    throw new Error('Please pass in a JSON or YAML string.');
   }
 
   return process(components, '', options.anchor);

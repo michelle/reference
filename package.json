@@ -8,5 +8,8 @@
   },
   "repository": "",
   "author": "Michelle Bu",
-  "license": "BSD"
+  "license": "BSD",
+  "dependencies": {
+    "yaml": "~0.2.3"
+  }
 }

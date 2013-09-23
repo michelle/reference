@@ -5,6 +5,19 @@ Generate a simple API reference from JSON. Made specifically for
 
     npm install reference
 
+## Usage
+
+```javascript
+var reference = require('reference');
+var fs = require('fs');
+
+var file = fs.readFileSync('./documentation.json', {anchor: true}); // adds permalinks/anchors for all headings.
+// also accepts yaml.
+
+// Generated HTML!
+var html = reference(file);
+```
+
 ## Expected style
 
 The `name` property is **required**. Everything else is optional. Anchor IDs
