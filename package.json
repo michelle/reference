@@ -3,10 +3,10 @@
   "version": "0.1.1",
   "description": "Generate documentation from JSON.",
   "main": "reference.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/michellebu/reference.git"
   },
-  "repository": "",
   "author": "Michelle Bu",
   "license": "BSD",
   "dependencies": {
